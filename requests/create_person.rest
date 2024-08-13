@@ -1,0 +1,7 @@
+POST https://fullstackback-j6a0.onrender.com/api/persons
+Content-Type: application/json
+
+{
+  "name": "arto hsellas",
+  "number": "123456789"
+}
