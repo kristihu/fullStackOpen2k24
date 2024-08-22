@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+const mongoose = require("mongoose");
+require("dotenv").config();
 
 //console.log('MONGO URL:', process.env.MONGO);
 
@@ -9,11 +9,11 @@ const url = process.env.MONGO;
 
 mongoose
   .connect(url)
-  .then(result => {
-    console.log('connected to MongoDB');
+  .then(() => {
+    console.log("connected to MongoDB");
   })
-  .catch(error => {
-    console.log('error connecting to MongoDB:', error.message);
+  .catch((error) => {
+    console.log("error connecting to MongoDB:", error.message);
   });
 
 const personSchema = new mongoose.Schema({
@@ -30,12 +30,12 @@ const personSchema = new mongoose.Schema({
       validator: function (v) {
         return /^\d{2,3}-\d{4,}$/.test(v);
       },
-      message: props => `${props.value} is not a valid phonenumber`,
+      message: (props) => `${props.value} is not a valid phonenumber`,
     },
   },
 });
 
-personSchema.set('toJSON', {
+personSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -43,4 +43,4 @@ personSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('Person', personSchema);
+module.exports = mongoose.model("Person", personSchema);
